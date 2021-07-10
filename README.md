@@ -58,4 +58,4 @@ plt.show()
 * This module is based on `matplotlib.gridspec`. So you can use the parameters that are configurable in the initialization of a `gridspec` with the same functionality in the initialization of this module. For example, set the `wspace` and `hspace` parameters to change the horizontal or vertical spacing between subfigures.
 
 ## Installation
-Package is avalable on [PyPI](https://test.pypi.org/project/matplotlib-dashboard/).
+Package is avalable on [PyPI](https://pypi.org/project/matplotlib-dashboard/).
