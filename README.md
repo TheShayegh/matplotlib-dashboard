@@ -2,72 +2,60 @@
 
 This package creates a simple user interface for creating subfigures when working with matplotlib.
 
+<div style="overflow-y: scroll; max-height: 250px">
+
 ```python
+import matplotlib.pyplot as plt
 plt.figure(figsize=(10,10))
 
+from matplotlib_dashboard import MatplotlibDashboard
 dashboard = MatplotlibDashboard([
-    ['red','red','red','red'],
-    ['g3D','g3D',None,'blue'],
-    ['g3D','g3D','im','blue'],
-], wspace=0.5, hspace=0.5)
+    ['top' ,'top' ,'top' ,'top'  ],
+    ['left','left', None ,'right'],
+    ['left','left','down','right'],
+], as3D=['left'], wspace=0.5, hspace=0.5)
 
-dashboard['red'].plot(np.random.rand(200), color='red')
-# A few more lines of matplotlib
+import numpy as np
+dashboard['top'].plot(np.random.rand(200), color='red')
+dashboard['top'].set_ylabel('y')
+dashboard['top'].set_xlabel('x')
+dashboard['top'].set_title('top plot')
+
+dashboard['right'].bar(['A','B','C'], [10,35,17], color='blue')
+dashboard['right'].set_ylabel('freq')
+dashboard['right'].set_xlabel('label')
+dashboard['right'].set_title('right bar')
+
+from PIL import Image
+dashboard['down'].imshow(Image.open('./test1.jpeg'))
+dashboard['down'].get_xaxis().set_ticks([])
+dashboard['down'].get_yaxis().set_ticks([])
+dashboard['down'].set_title('down image')
+
+z = ((5-np.arange(100)%10)**3).reshape(10,10)
+x, y = np.meshgrid(np.arange(z.shape[0]), np.arange(z.shape[1]))
+dashboard['left'].plot_surface(x, y, z, color='green')
+dashboard['left'].set_ylabel('x')
+dashboard['left'].set_xlabel('y')
+dashboard['left'].set_zlabel('z')
+dashboard['left'].set_title('left surface')
 
 plt.show()
 ```
+
+</div>
+<br/>
+
 <img src="https://github.com/BehzadShayegh/matplotlib-dashboard/blob/master/tests/test1_output.png?raw=true" style="width: 75%;" />
 
 ## Customization
 
-* Pass the map of subfigures you want when instantiation a dashboard. Write the map as a list of list or a 2D-array.
+* Pass the map of subfigures you want when instantiation a dashboard. Write the map as a list of lists or a 2D-array.
 * Get the subfigure you want using get-item syntax. The name is what you defined in the map.
 * Use the `None` keyword to access empty part of the map.
-* Use the `3D` postfix at the end of the name of a subfigure to have it as a 3D-subfigure.
+* Use `as3D` argument to determine which subfigures are 3D.
 * Any customization on `matplotlib.pyplot` also applies to this dashboard. For example, use `plt.figure(figsize=(x,y))` to change the size of the dashboard figure.
 * This module is based on `matplotlib.gridspec`. So you can use the parameters that are configurable in the initialization of a `gridspec` with the same functionality in the initialization of this module. For example, set the `wspace` and `hspace` parameters to change the horizontal or vertical spacing between subfigures.
-
-## Example
-
-```python
-import matplotlib.pyplot as plt
-from matplotlib_dashboard import MatplotlibDashboard
-import numpy as np
-from PIL import Image
-
-plt.figure(figsize=(10,10))
-
-dashboard = MatplotlibDashboard([
-    ['red','red','red','red'],
-    ['g3D','g3D',None,'blue'],
-    ['g3D','g3D','im','blue'],
-], wspace=0.5, hspace=0.5)
-
-dashboard['red'].plot(np.random.rand(200), color='red')
-dashboard['red'].set_ylabel('y')
-dashboard['red'].set_xlabel('x')
-dashboard['red'].set_title('red plot')
-
-dashboard['blue'].bar(['A','B','C'], [10,35,17], color='blue')
-dashboard['blue'].set_ylabel('freq')
-dashboard['blue'].set_xlabel('label')
-dashboard['blue'].set_title('blue bar')
-
-dashboard['im'].imshow(Image.open('test1.jpeg'))
-dashboard['im'].get_xaxis().set_ticks([])
-dashboard['im'].get_yaxis().set_ticks([])
-dashboard['im'].set_title('cat image')
-
-z = ((5-np.arange(100)%10)**3).reshape(10,10)
-x, y = np.meshgrid(np.arange(z.shape[0]), np.arange(z.shape[1]))
-dashboard['g3D'].plot_surface(x, y, z, color='green')
-dashboard['g3D'].set_ylabel('x')
-dashboard['g3D'].set_xlabel('y')
-dashboard['g3D'].set_zlabel('z')
-dashboard['g3D'].set_title('green surface')
-
-plt.show()
-```
 
 ## Installation
 Package is avalable on [PyPI](https://test.pypi.org/project/matplotlib-dashboard/).

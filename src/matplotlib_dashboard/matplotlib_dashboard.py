@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 class MatplotlibDashboard:
-    def __init__(self, positions:list, **args):
+    def __init__(self, positions:list, as3D=[], **args):
         positions = np.array(positions)
         if len(positions.shape) == 1:
             positions = positions.reshape(1,-1)
@@ -19,7 +19,7 @@ class MatplotlibDashboard:
             x_min = x.min()
             x_max = x.max()
             grid = gs[y_min:y_max+1, x_min:x_max+1]
-            if i[-2:]=='3D':
+            if i in as3D:
                 self.axes[i] = plt.subplot(grid, projection='3d')
             else:
                 self.axes[i] = plt.subplot(grid)
