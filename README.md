@@ -2,14 +2,32 @@
 
 This package creates a simple user interface for creating subfigures when working with matplotlib.
 
-* Draw a map of the subfigures next to each other in the form of a list of lists and pass it on when creating the dashboard.
-* Using the getitem syntax (`dashboard[item]`), get the subfigure you want and draw a plot on it.
-* If you want to empty part of the map, use the `None` keyword in the map.
-* If you want to create a 3D subfigure, use the `3D` postfix at the end of its name on the map.
-* To change the horizontal or vertical spacing between subfigures, set the `wspace` and `hspace` parameters when creating the dashboard.
-* Determine the overall size of the dashboard using the `plt.figure(figsize=(x,y)` command before building the dashboard.
-* This dashboard creates an interface between the user and the `matplotlib` package. Therefore, any customization on `matplotlib` also applies to this dashboard.
-* This module itself uses the `matplotlib.gridspec` package. Therefore, any customization on `matplotlib.gridspec` can also be applied to this dashboard. Set the required parameters in the dashboard constructor.
+```python
+plt.figure(figsize=(10,10))
+
+dashboard = MatplotlibDashboard([
+    ['red','red','red','red'],
+    ['g3D','g3D',None,'blue'],
+    ['g3D','g3D','im','blue'],
+], wspace=0.5, hspace=0.5)
+
+dashboard['red'].plot(np.random.rand(200), color='red')
+# A few more lines of matplotlib
+
+plt.show()
+```
+<img src="https://github.com/BehzadShayegh/matplotlib-dashboard/blob/master/tests/test1_output.png?raw=true" style="width: 75%;" />
+
+## Customization
+
+* Pass the map of subfigures you want when instantiation a dashboard. Write the map as a list of list or a 2D-array.
+* Get the subfigure you want using get-item syntax. The name is what you defined in the map.
+* Use the `None` keyword to access empty part of the map.
+* Use the `3D` postfix at the end of the name of a subfigure to have it as a 3D-subfigure.
+* Any customization on `matplotlib.pyplot` also applies to this dashboard. For example, use `plt.figure(figsize=(x,y))` to change the size of the dashboard figure.
+* This module is based on `matplotlib.gridspec`. So you can use the parameters that are configurable in the initialization of a `gridspec` with the same functionality in the initialization of this module. For example, set the `wspace` and `hspace` parameters to change the horizontal or vertical spacing between subfigures.
+
+## Example
 
 ```python
 import matplotlib.pyplot as plt
@@ -50,7 +68,6 @@ dashboard['g3D'].set_title('green surface')
 
 plt.show()
 ```
-<img src="./tests/test1_output.png" style="width: 500px;" />
 
 ## Installation
 Package is avalable on [PyPI](https://test.pypi.org/project/matplotlib-dashboard/).
