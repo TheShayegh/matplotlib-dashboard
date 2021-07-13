@@ -46,7 +46,7 @@ plt.show()
 </div>
 <br/>
 
-<img src="https://github.com/BehzadShayegh/matplotlib-dashboard/blob/master/tests/test1_output.png?raw=true" style="width: 75%;" />
+<img src="https://github.com/BehzadShayegh/matplotlib-dashboard/blob/master/examples/example1/output.png?raw=true" style="width: 75%;" />
 
 ## Customization
 

@@ -20,7 +20,7 @@ dashboard['right'].set_xlabel('label')
 dashboard['right'].set_title('right bar')
 
 from PIL import Image
-dashboard['down'].imshow(Image.open('./test1.jpeg'))
+dashboard['down'].imshow(Image.open('./cat.jpeg'))
 dashboard['down'].get_xaxis().set_ticks([])
 dashboard['down'].get_yaxis().set_ticks([])
 dashboard['down'].set_title('down image')
