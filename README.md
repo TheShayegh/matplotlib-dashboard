@@ -50,12 +50,12 @@ plt.show()
 
 ## Customization
 
-* Pass the map of subfigures you want when instantiation a dashboard. Write the map as a list of lists or a 2D-array.
+* Pass the map of subfigures you want when getting an instance of the dashboard. Write the map as a list of lists or a 2D array.
 * Get the subfigure you want using get-item syntax. The name is what you defined in the map.
-* Use the `None` keyword to access empty part of the map.
+* Use the `None` keyword to access the empty part of the map.
 * Use `as3D` argument to determine which subfigures are 3D.
 * Any customization on `matplotlib.pyplot` also applies to this dashboard. For example, use `plt.figure(figsize=(x,y))` to change the size of the dashboard figure.
-* This module is based on `matplotlib.gridspec`. So you can use the parameters that are configurable in the initialization of a `gridspec` with the same functionality in the initialization of this module. For example, set the `wspace` and `hspace` parameters to change the horizontal or vertical spacing between subfigures.
+* This module is based on `matplotlib.gridspec`. Therefore, you can use the `gridspec` initialization configurable parameters with the same functionality in this dashboard initialization. For example, set the `wspace` and `hspace` parameters to change the horizontal or vertical spacing between subfigures.
 
 ## Installation
 ```pip install matplotlib-dashboard```
